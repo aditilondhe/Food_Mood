@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import LoadingSpinner from "../components/LoadingSpinner";
+import axios from "axios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -63,6 +64,19 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axios.post("http://localhost:6001/jwt", userInfo).then((response) => {
+          // console.log(response);
+          const token = response.data.token;
+          if (token) {
+            localStorage.setItem("access-token", token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
+
       setLoading(false);
     });
     return () => {

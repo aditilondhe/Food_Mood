@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthProvider";
+import axios from "axios";
 
 const Signup = () => {
   const {
@@ -17,7 +18,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signUpWithGmail } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -31,13 +33,56 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        alert("Account creation successful!");
-        setIsModalOpen(false); // Close the modal
-        navigate(from, { replace: true });
+        updateUserProfile(data.email, data.photoURL).then(() => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axios
+            .post("http://localhost:6001/users", userInfo)
+            .then((response) => {
+              alert("Account created successfully!");
+              setIsModalOpen(false); // Close the modal
+              navigate(from, { replace: true });
+            })
+            .catch((err) => {
+              if (err.response?.status === 409) {
+                // user already exists, still navigate
+                alert("User already exists, logged in.");
+                navigate(from, { replace: true });
+              }
+            });
+        });
       })
       .catch((error) => {
         setError(error.message);
       });
+  };
+
+  // login with google
+  const handleRegister = () => {
+    signUpWithGmail()
+      .then((result) => {
+        const user = result.user;
+        const userInfor = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axios
+          .post("http://localhost:6001/users", userInfor)
+          .then((response) => {
+            // console.log(response);
+            alert("Signin successful!");
+            navigate("/");
+          })
+          .catch((err) => {
+            if (err.response?.status === 409) {
+              alert("User already exists, logged in.");
+              navigate("/");
+            }
+          });
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -49,6 +94,20 @@ const Signup = () => {
           method="dialog"
         >
           <h3 className="font-bold text-lg text-center">Create an Account!</h3>
+
+          {/* name */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="name"
+              placeholder="Your name"
+              className="input input-bordered"
+              style={{ backgroundColor: "white" }} // Set background color to white
+              {...register("name")}
+            />
+          </div>
 
           {/* email */}
           <div className="form-control">
@@ -113,13 +172,16 @@ const Signup = () => {
 
           <p className="text-center my-2">
             Have an account?{" "}
-            <button
+            {/* <button
               type="button"
               className="underline text-red ml-1"
               onClick={() => setIsModalOpen(true)}
             >
               Login
-            </button>
+            </button> */}
+            <Link to="/login">
+              <button className="ml-2 underline text-red">Login here</button>
+            </Link>
           </p>
 
           <Link
@@ -132,7 +194,10 @@ const Signup = () => {
 
         {/* social sign in */}
         <div className="text-center space-x-3 mb-5">
-          <button className="btn btn-circle bg-white hover:bg-green hover:text-white">
+          <button
+            onClick={handleRegister}
+            className="btn btn-circle bg-white hover:bg-green hover:text-white"
+          >
             <FaGoogle />
           </button>
           <button className="btn btn-circle bg-white hover:bg-green hover:text-white">
