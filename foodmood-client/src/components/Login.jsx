@@ -7,11 +7,12 @@ import { AuthContext } from "../contexts/AuthProvider";
 // import useAxiosPublic from "../hooks/useAxiosPublic";
 // import useAuth from "../hooks/useAuth";
 import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   const [errorMessage, seterrorMessage] = useState("");
-  // const { signUpWithGmail, login } = useAuth();
-  // const axiosPublic = useAxiosPublic();
+  //const { signUpWithGmail, login } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const { signUpWithGmail, login } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -38,8 +39,8 @@ const Login = () => {
           name: data.name,
           email: data.email,
         };
-        axios
-          .post("http://localhost:6001/users", userInfor)
+        axiosPublic
+          .post("/users", userInfor)
           .then((response) => {
             // console.log(response);
             alert("Signin successful!");
@@ -68,8 +69,8 @@ const Login = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axios
-          .post("http://localhost:6001/users", userInfor)
+        axiosPublic
+          .post("/users", userInfor)
           .then((response) => {
             // console.log(response);
             alert("Signin successful!");

@@ -20,6 +20,7 @@ const Signup = () => {
 
   const { createUser, updateUserProfile, signUpWithGmail } =
     useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -38,8 +39,8 @@ const Signup = () => {
             name: data.name,
             email: data.email,
           };
-          axios
-            .post("http://localhost:6001/users", userInfo)
+          axiosPublic
+            .post("/users", userInfo)
             .then((response) => {
               alert("Account created successfully!");
               setIsModalOpen(false); // Close the modal
@@ -68,8 +69,8 @@ const Signup = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axios
-          .post("http://localhost:6001/users", userInfor)
+        axiosPublic
+          .post("/users", userInfor)
           .then((response) => {
             // console.log(response);
             alert("Signin successful!");
