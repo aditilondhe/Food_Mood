@@ -12,7 +12,7 @@ place orders, and make online payments, while enabling admins to manage all data
 - User Authentication — Secure login/signup using Firebase Authentication  
 - JWT Authorization — Role-based access with protected routes using JSON Web Tokens  
 - Admin Panel — Exclusive dashboard for administrators to manage users, orders, and menu items  
-- Image Hosting — Store and serve food/menu images using third-party image hosting (like imgbb)  
+- Image Hosting — Store and serve food/menu images using Cloudinary
 - Payment Integration — Stripe-enabled secure payments for food orders  
 - Cart System — Add-to-cart, item removal, and order processing features  
 - Order Management — Admins can view, accept, or decline incoming orders  
