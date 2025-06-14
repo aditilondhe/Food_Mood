@@ -106,14 +106,14 @@ const DashboardLayout = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard">
+                <Link to="/dashboard/add-menu">
                   {" "}
                   <FaPlusCircle />
                   Add Menu
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard">
+                <Link to="/dashboard/manage-items">
                   {" "}
                   <FaEdit />
                   Manage Items

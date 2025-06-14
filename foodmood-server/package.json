@@ -24,6 +24,8 @@
 
   "dependencies": {
 
+    "cloudinary": "^1.41.3",
+
     "cors": "^2.8.5",
 
     "dotenv": "^16.4.5",
@@ -34,7 +36,11 @@
 
     "mongodb": "^6.8.0",
 
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+
+    "multer": "^2.0.1",
+
+    "multer-storage-cloudinary": "^4.0.0"
 
   },
 

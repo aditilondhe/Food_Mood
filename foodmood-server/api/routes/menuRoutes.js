@@ -1,7 +1,7 @@
 const express = require("express");
 const Menu = require("../models/Menu");
 const router = express.Router();
-
+const { upload } =  require('../../config/cloudinary');
 const menuController = require('../controllers/menuControllers')
 
 // get all menu items 
@@ -9,7 +9,7 @@ const menuController = require('../controllers/menuControllers')
 router.get('/', menuController.getAllMenuItems )
 
 // post a menu item
-router.post('/', menuController.postMenuItem);
+router.post('/',upload.single("image"), menuController.postMenuItem);
 
 // delete a menu item
 router.delete('/:id', menuController.deleteMenuItem);
