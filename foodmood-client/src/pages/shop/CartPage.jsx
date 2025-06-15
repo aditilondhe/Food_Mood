@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const [cart, refetch] = useCart();
@@ -203,9 +204,11 @@ const CartPage = () => {
           <h3 className="font-medium">Shopping Details</h3>
           <p>Total Items:{cart.length}</p>
           <p>Total Price: ${orderTotal.toFixed(2)} </p>
-          <button className="btn bg-green text-white">
-            Proceed to Checkout
-          </button>
+          <Link to="/process-checkout">
+            <button className="btn bg-green text-white">
+              Proceed to Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>

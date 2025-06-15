@@ -18,6 +18,6 @@ router.delete('/:id', menuController.deleteMenuItem);
 router.get('/:id', menuController.singleMenuItem);
 
 // update single menu item
-router.put('/:id', menuController.updateMenuItem)
+router.patch('/:id',upload.single("image"), menuController.updateMenuItem)
 
 module.exports= router;

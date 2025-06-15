@@ -68,24 +68,36 @@ const singleMenuItem = async (req, res) => {
 
 // update single menu item
 const updateMenuItem = async (req, res) => {
-    const menuId = req.params.id;
-    const { name, recipe, image, category, price} = req.body;
-    try {
-        const updatedMenu = await Menu.findByIdAndUpdate(menuId, 
-            { name, recipe, image, category, price}, 
-            {new: true, runValidator: true}
-            );
+  const menuId = req.params.id;
+  const { name, recipe, category, price } = req.body;
 
-        if(!updatedMenu) {
-            return res.status(404).json({ message:"Menu not found"})
-        }
+  let updatedFields = { name, recipe, category, price };
 
-        res.status(200).json(updatedMenu)
-        
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+  // If image is uploaded
+  if (req.file) {
+    updatedFields.image = req.file.path;
+  }
+
+  try {
+    const updatedMenu = await Menu.findByIdAndUpdate(
+      menuId,
+      updatedFields,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedMenu) {
+      return res.status(404).json({ message: "Menu not found" });
     }
+
+    res.status(200).json({
+      message: "Menu item updated successfully",
+      item: updatedMenu,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+
 
 
 

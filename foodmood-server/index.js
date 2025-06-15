@@ -8,6 +8,7 @@ const port = process.env.PORT || 6001;
 require('dotenv').config()
 connectDB();
 
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 //middleware
 app.use(cors());
@@ -30,6 +31,24 @@ const menuRoutes = require('./api/routes/menuRoutes');
 const cartRoutes = require('./api/routes/cartRoutes');
 const userRoutes=require('./api/routes/userRoutes')
 
+//stripe payment routes
+ // Create a PaymentIntent with the order amount and currency
+  app.post("/create-payment-intent", async (req, res) => {
+  const { price } = req.body;
+   const amount = Math.round(price * 100);
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: amount,
+    currency: "usd",
+   payment_method_types:["card"]
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
+
 app.use('/menu', menuRoutes)
 app.use('/carts', cartRoutes);
 app.use('/users',userRoutes)
@@ -37,6 +56,7 @@ app.use('/users',userRoutes)
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
