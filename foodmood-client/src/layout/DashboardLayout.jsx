@@ -82,7 +82,7 @@ const DashboardLayout = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu  bg-[#f4f4f0] text-base-content min-h-full w-80 p-4">
+            <ul className="menu  bg-[#f4f4f0]  min-h-full w-80 p-4">
               {/* Sidebar content here */}
               <li>
                 <Link to="/dashboard" className="flex justify-start mb-3">
@@ -99,7 +99,7 @@ const DashboardLayout = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard">
+                <Link to="/dashboard/manage-bookings">
                   {" "}
                   <FaShoppingBag />
                   Manage Bookings

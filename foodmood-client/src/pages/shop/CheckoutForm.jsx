@@ -2,64 +2,68 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [cardError, setCardError] = useState("");
+  const [cardError, setcardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  console.log(user.email);
 
   useEffect(() => {
     if (typeof price !== "number" || price < 1) {
-      console.log("Price is not a number or less than 1");
+      console.error(
+        "Invalid price value. Must be a number greater than or equal to 1."
+      );
       return;
     }
 
     axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      console.log("Stripe backend response:", res.data);
-      if (res.data?.clientSecret) {
-        setClientSecret(res.data.clientSecret);
-      } else {
-        console.error("clientSecret missing from backend response!");
-      }
+      console.log(res.data.clientSecret);
+      console.log(price);
+      setClientSecret(res.data.clientSecret);
     });
   }, [price, axiosSecure]);
 
+  // handleSubmit btn click
   const handleSubmit = async (event) => {
+    // Block native form submission.
     event.preventDefault();
 
     if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
       return;
     }
+
     const card = elements.getElement(CardElement);
 
     if (card == null) {
       return;
     }
 
-    // Use your card Element with other Stripe.js APIs
+    // console.log('card: ', card)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
-    if (!clientSecret) {
-      console.error("clientSecret is undefined. Cannot confirm payment.");
-      return;
-    }
-
     if (error) {
       console.log("[error]", error);
-      setCardError(error.message);
+      setcardError(error.message);
     } else {
-      setCardError("Success!");
-      console.log("[PaymentMethod]", paymentMethod);
+      // setcardError('Success!');
+      // console.log('[PaymentMethod]', paymentMethod);
     }
-    const { paymentIntent, confirmError } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
+    console.log("clientSecret being used:", clientSecret);
+
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
           billing_details: {
@@ -67,13 +71,42 @@ const CheckoutForm = ({ price, cart }) => {
             email: user?.email || "unknown",
           },
         },
-      }
-    );
+      });
+
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log(paymentIntent);
+
+    console.log("paymentIntent", paymentIntent);
+
+    if (paymentIntent.status === "succeeded") {
+      const transactionId = paymentIntent.id;
+      setcardError(`Your transactionId is: ${transactionId}`);
+
+      // save payment info to server
+      const paymentInfo = {
+        email: user.email,
+        transactionId: transactionId,
+        price,
+        quantity: cart.length,
+        status: "Order Pending",
+        itemsName: cart.map((item) => item.name),
+        cartItems: cart.map((item) => item._id),
+        menuItems: cart.map((item) => item.menuItemId),
+      };
+      console.log(paymentInfo);
+
+      //send payment info
+      axiosSecure.post("/payments", paymentInfo).then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          alert("Payment Successfull!");
+          navigate("/order");
+        }
+      });
+    }
   };
+
   return (
     <div className="flex flex-col sm:flex-row justify-start items-start gap-8">
       {/* left side */}
@@ -106,7 +139,7 @@ const CheckoutForm = ({ price, cart }) => {
           />
           <button
             type="submit"
-            disabled={!stripe}
+            disabled={!stripe || !clientSecret}
             className="btn btn-sm bg-orange-500 w-full  text-white mt-5"
           >
             Pay

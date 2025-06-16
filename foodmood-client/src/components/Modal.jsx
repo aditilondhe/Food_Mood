@@ -95,11 +95,11 @@ const Modal = () => {
             {/* email */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-gray-700">Email</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 className="input input-bordered"
                 style={{ backgroundColor: "white" }} // Set background color to white
                 {...register("email")}
@@ -109,17 +109,20 @@ const Modal = () => {
             {/* password */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-gray-700">Password</span>
               </label>
               <input
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 className="input input-bordered"
                 style={{ backgroundColor: "white" }} // Set background color to white
                 {...register("password")}
               />
               <label className="label mt-1">
-                <a href="#" className="label-text-alt link link-hover">
+                <a
+                  href="#"
+                  className="label-text-alt link link-hover text-gray-700"
+                >
                   Forgot password?
                 </a>
               </label>

@@ -15,7 +15,7 @@ const categoryItems = [
   },
   {
     id: 3,
-    title: "Desert",
+    title: "Dessert",
     des: "(48 Items)",
     image: "../../../public/img3.png",
   },
@@ -35,7 +35,7 @@ const Categories = () => {
         <h2 className="title">Popular Categories</h2>
       </div>
       {/* Categories card*/}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-8 justify-around items-center mt-12">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-8 justify-around items-center mt-12 ">
         {categoryItems.map((item, i) => (
           <div
             key={i}

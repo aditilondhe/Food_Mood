@@ -8,7 +8,8 @@ const SpecialDishes = () => {
   const [recipes, setRecipes] = useState([]);
   const slider = React.useRef(null);
   useEffect(() => {
-    fetch("/menu.json")
+    //fetch("/menu.json")
+    fetch("http://localhost:6001/menu")
       .then((res) => res.json())
       .then((data) => {
         const specials = data.filter((item) => item.category === "popular");
@@ -52,7 +53,7 @@ const SpecialDishes = () => {
     ],
   };
   return (
-    <div className="section-container my-20 ">
+    <div className="section-container my-20 mx-20">
       <div className="text-left px-6">
         <p className="subtitle">Special Dishes</p>
         <h2 className="title md:w-[520px]">Standout Dishes From Our Menu</h2>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Profile = ({ user }) => {
   const { logOut } = useContext(AuthContext);
@@ -42,13 +43,13 @@ const Profile = ({ user }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <ul className="menu bg-white text-gray-700  min-h-full w-80 p-4">
             {/* Sidebar content here */}
             <li>
               <a href="/update-profile ">Profile</a>
             </li>
             <li>
-              <a>Orders</a>
+              <Link to="/order">Orders</Link>
             </li>
 
             <li>
@@ -58,6 +59,11 @@ const Profile = ({ user }) => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            {/* {!isAdminLoading && isAdmin && (
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            )} */}
             <li>
               <a onClick={handleLogout}>Logout</a>
             </li>

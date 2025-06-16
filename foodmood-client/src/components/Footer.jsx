@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer xl:px-24 py-10 px-4 text-base-content p-10">
+      <footer className="footer xl:px-24 py-10 px-4 text-base-content p-10 text-gray-700">
         <aside>
           <img src="/foodmood.png" width={100} />
           <p className="my-5 md:w-40">
