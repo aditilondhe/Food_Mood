@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthProvider";
 import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Signup = () => {
   const {
@@ -87,131 +88,123 @@ const Signup = () => {
   };
 
   return (
-    <div className="max-w-md bg-white shadow w-full mx-auto flex items-center my-20">
-      <div className="modal-action flex flex-col justify-center mt-0 bg-white ml-10 mr-10">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="card-body"
-          method="dialog"
-        >
-          <h3 className="font-bold text-lg text-center">Create an Account!</h3>
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6 sm:p-8 border-2">
+        <div className="modal-action flex flex-col justify-center mt-2">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body"
+            method="dialog"
+          >
+            <h3 className="font-bold text-xl text-center mb-4">
+              Create an Account!
+            </h3>
 
-          {/* name */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Name</span>
-            </label>
-            <input
-              type="name"
-              placeholder="Your name"
-              className="input input-bordered"
-              style={{ backgroundColor: "white" }} // Set background color to white
-              {...register("name")}
-            />
-          </div>
+            {/* Name */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-gray-700">Name</span>
+              </label>
+              <input
+                type="name"
+                placeholder="Your name"
+                className="input input-bordered w-full"
+                style={{ backgroundColor: "white" }}
+                {...register("name")}
+              />
+            </div>
 
-          {/* email */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              placeholder="email"
-              className="input input-bordered"
-              style={{ backgroundColor: "white" }} // Set background color to white
-              {...register("email", { required: "Email is required" })}
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs italic">
-                {errors.email.message}
-              </p>
+            {/* Email */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text  text-gray-700">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="email"
+                className="input input-bordered w-full"
+                style={{ backgroundColor: "white" }}
+                {...register("email", { required: "Email is required" })}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs italic mt-1">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
+            {/* Password */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text  text-gray-700">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="password"
+                className="input input-bordered w-full"
+                style={{ backgroundColor: "white" }}
+                {...register("password", { required: "Password is required" })}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-xs italic mt-1">
+                  {errors.password.message}
+                </p>
+              )}
+              <label className="label mt-1">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+
+            {/* Error message */}
+            {error && (
+              <div className="text-red-500 text-center my-2">{error}</div>
             )}
-          </div>
 
-          {/* password */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input
-              type="password"
-              placeholder="password"
-              className="input input-bordered"
-              style={{ backgroundColor: "white" }} // Set background color to white
-              {...register("password", { required: "Password is required" })}
-            />
-            {errors.password && (
-              <p className="text-red-500 text-xs italic">
-                {errors.password.message}
-              </p>
-            )}
-            <label className="label mt-1">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
-          </div>
+            {/* Signup button */}
+            <div className="form-control mt-6">
+              <input
+                type="submit"
+                value="Signup"
+                className="btn bg-green text-white hover:bg-green-dark transition-all"
+              />
+            </div>
 
-          {/* error text */}
-          {error && (
-            <div className="text-red-500 text-center my-2">{error}</div>
-          )}
+            {/* Login redirect */}
+            <p className="text-center my-4 text-sm mt-6">
+              Have an account?
+              <Link to="/login" className="ml-1 underline text-red">
+                Login here
+              </Link>
+            </p>
 
-          {/* signup btn */}
-          <div className="form-control mt-6">
-            <input
-              type="submit"
-              value="Signup"
-              className="bg-green text-white btn"
-              style={{
-                cursor: "pointer", // Ensure pointer cursor on hover
-                transition: "background-color 0.3s ease", // Smooth transition
-              }}
-            />
-          </div>
-
-          <p className="text-center my-2">
-            Have an account?{" "}
-            {/* <button
-              type="button"
-              className="underline text-red ml-1"
-              onClick={() => setIsModalOpen(true)}
+            {/* Close Button */}
+            <Link
+              to="/"
+              className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4"
             >
-              Login
-            </button> */}
-            <Link to="/login">
-              <button className="ml-2 underline text-red">Login here</button>
+              ✕
             </Link>
-          </p>
+          </form>
 
-          <Link
-            to="/"
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          >
-            ✕
-          </Link>
-        </form>
-
-        {/* social sign in */}
-        <div className="text-center space-x-3 mb-5">
-          <button
-            onClick={handleRegister}
-            className="btn btn-circle bg-white hover:bg-green hover:text-white"
-          >
-            <FaGoogle />
-          </button>
-          <button className="btn btn-circle bg-white hover:bg-green hover:text-white">
-            <FaFacebookF />
-          </button>
-          <button className="btn btn-circle bg-white hover:bg-green hover:text-white">
-            <FaGithub />
-          </button>
+          {/* Social Sign-In Buttons */}
+          <div className="text-center space-x-3 mt-0">
+            <button
+              onClick={handleRegister}
+              className="btn btn-circle bg-white border hover:bg-green hover:text-white"
+            >
+              <FaGoogle />
+            </button>
+            <button className="btn btn-circle bg-white border hover:bg-green hover:text-white">
+              <FaFacebookF />
+            </button>
+            <button className="btn btn-circle bg-white border hover:bg-green hover:text-white">
+              <FaGithub />
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* Conditional rendering of Modal */}
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };

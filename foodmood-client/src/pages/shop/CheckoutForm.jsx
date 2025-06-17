@@ -108,47 +108,52 @@ const CheckoutForm = ({ price, cart }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row justify-start items-start gap-8">
-      {/* left side */}
-      <div className="md:w-1/2 space-y-3 w-full">
+    <div className="flex flex-col lg:flex-row justify-start items-start gap-8 px-4 py-8">
+      {/* Left side - Order Summary */}
+      <div className="lg:w-1/2 w-full space-y-3">
         <h4 className="text-lg font-semibold">Order Summary</h4>
         <p>Total Price: ${price}</p>
         <p>Number of Items: {cart.length}</p>
       </div>
-      {/*  right side */}
-      <div className="md:w-1/2 space-y-5 w-full card shrink-0 max-w-sm shadow-2xl bg-white px-4 py-8 ">
-        <h4 className="text-lg font-semibold">Process your Payment!</h4>
-        <h5 className="font-medium">Credit/Debit Card</h5>
-        {/* stripe form */}
+
+      {/* Right side - Payment Form */}
+      <div className="lg:w-1/2 w-full card shadow-md bg-white px-5 py-8 rounded-lg max-w-full">
+        <h4 className="text-lg font-semibold mb-2">Process your Payment!</h4>
+        <h5 className="font-medium mb-4">Credit/Debit Card</h5>
+
+        {/* Stripe Payment Form */}
         <form onSubmit={handleSubmit}>
-          <CardElement
-            options={{
-              style: {
-                base: {
-                  fontSize: "16px",
-                  color: "#424770",
-                  "::placeholder": {
-                    color: "#aab7c4",
+          <div className="border p-3 rounded-md">
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
                   },
                 },
-                invalid: {
-                  color: "#9e2146",
-                },
-              },
-            }}
-          />
+              }}
+            />
+          </div>
           <button
             type="submit"
             disabled={!stripe || !clientSecret}
-            className="btn btn-sm bg-orange-500 w-full  text-white mt-5"
+            className="btn btn-sm bg-orange-500 w-full text-white mt-5"
           >
             Pay
           </button>
         </form>
-        {cardError ? (
-          <p className="text-red mx-auto italic text-sm">{cardError}</p>
-        ) : (
-          ""
+
+        {cardError && (
+          <p className="text-red-500 mt-2 italic text-sm text-center">
+            {cardError}
+          </p>
         )}
       </div>
     </div>

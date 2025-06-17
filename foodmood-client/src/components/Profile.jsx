@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 
 const Profile = ({ user }) => {
+  const closeDrawer = () => {
+    const drawerCheckbox = document.getElementById("my-drawer-4");
+    if (drawerCheckbox) drawerCheckbox.checked = false;
+  };
+
   const { logOut } = useContext(AuthContext);
   const handleLogout = () => {
     logOut()
@@ -49,11 +54,9 @@ const Profile = ({ user }) => {
               <a href="/update-profile ">Profile</a>
             </li>
             <li>
-              <Link to="/order">Orders</Link>
-            </li>
-
-            <li>
-              <a>Setting</a>
+              <Link to="/order" onClick={closeDrawer}>
+                Orders
+              </Link>
             </li>
 
             <li>
@@ -65,7 +68,14 @@ const Profile = ({ user }) => {
               </li>
             )} */}
             <li>
-              <a onClick={handleLogout}>Logout</a>
+              <a
+                onClick={() => {
+                  handleLogout();
+                  closeDrawer();
+                }}
+              >
+                Logout
+              </a>
             </li>
           </ul>
         </div>

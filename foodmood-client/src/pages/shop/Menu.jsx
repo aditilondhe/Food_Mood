@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Cards from "../../components/Cards";
 import { FaFilter } from "react-icons/fa";
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
+  const menuSectionRef = useRef(null);
   const [filteredItems, setfilteredItems] = useState([]);
   const [selectedCategory, setselectedCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
@@ -21,7 +22,7 @@ const Menu = () => {
 
         setMenu(data);
         setfilteredItems(data);
-      } catch (eror) {
+      } catch (error) {
         console.log("Error fetching data", error);
       }
     };
@@ -84,20 +85,27 @@ const Menu = () => {
   return (
     <div>
       {/*  menu*/}
-      <div className="max w-sreen-2xl container mx-auto xl:px-24 px:4 bg-gradient-to-r from-[#FAFAFA] from 0% to-[#FCFCFC] to-100%">
-        <div className="py-48 flex flex-col  justify-center items-center gap-8">
+      <div className="max-w-sreen-2xl container mx-auto xl:px-24 px:4 bg-gradient-to-r from-[#FAFAFA] from 0% to-[#FCFCFC] to-100%">
+        <div className="py-48 flex flex-col  justify-center items-center gap-6">
           {/* texts */}
-          <div className="text-center space-y-7 px-4">
+          <div className="text-center space-y-4 px-4 ">
             <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading snug">
               For the Love of Delicious
               <span className="text-green"> Food</span>
             </h2>
-            <p className="text-xl text-[#4A4A4A] md-w:4/5 mx-auto">
+            <p className="text-xl text-[#4A4A4A] md-w:4/5 mx-auto ">
               Come with family & feel the joy of mouthwatering food such as
-              Greek Salad, Lasagne, Butternut Pumpkin, Tokusen Wagyu, Olivas
-              Rellenas and more for a moderate cost
+              Paneer Tikka, Butter Chicken, Hyderabadi Biryani, Masala Dosa,
+              Chole Bhature, and more — all at a moderate cost.
             </p>
-            <button className="bg-green px-8 py-3 font-semibold ext-white rounded-full">
+          </div>
+          <div className="flex justify-center mt-6 ">
+            <button
+              className="bg-green px-8 py-3 font-semibold rounded-full"
+              onClick={() =>
+                menuSectionRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               Order Now
             </button>
           </div>
@@ -105,7 +113,7 @@ const Menu = () => {
       </div>
 
       {/* menu shop section(multiline comment added using shift+alt+a) */}
-      <div className="section-container">
+      <div ref={menuSectionRef} className="section-container mx-5">
         {/* filtering and sorting */}
         <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
           {/*all category btns */}
@@ -138,7 +146,7 @@ const Menu = () => {
               onClick={() => filterItems("dessert")}
               className={selectedCategory === "dessert" ? "active" : ""}
             >
-              Deserts
+              Desserts
             </button>
             <button
               onClick={() => filterItems("drinks")}
@@ -150,7 +158,7 @@ const Menu = () => {
 
           {/* sorting based on filtering */}
 
-          <div className="flex justify-end mb-4 rounded-sm">
+          <div className="flex justify-end mb-4 rounded-sm mx-5">
             <div className="bg-black pd-2">
               <FaFilter className="h-4 w-4  text-green" />
             </div>

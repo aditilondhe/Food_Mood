@@ -44,6 +44,7 @@ const UpdateProfile = () => {
               type="text"
               placeholder="Enter your name"
               className="input input-bordered"
+              style={{ backgroundColor: "white" }}
               required
             />
           </div>
@@ -56,6 +57,7 @@ const UpdateProfile = () => {
               type="text"
               placeholder="photoURL"
               className="input input-bordered"
+              style={{ backgroundColor: "white" }}
               required
             />
 

@@ -74,7 +74,7 @@ const ManageBookings = () => {
         <div className="overflow-x-auto lg:overflow-x-visible">
           <table className="table w-full">
             {/* head */}
-            <thead>
+            <thead className="text-gray-700">
               <tr>
                 <th>#</th>
                 <th>User</th>

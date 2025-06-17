@@ -1,6 +1,9 @@
 import React from "react";
 import banner from "../../public/banner.png";
 import bfood1 from "../../public/b-food1.png";
+import noodles from "../../public/noodles.avif";
+import burger from "../../public/burger.jpg";
+import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div className="max w-sreen-2xl container mx-auto xl:px-24 px:4 bg-gradient-to-r from-[#FAFAFA] from 0% to-[#FCFCFC] to-100%">
@@ -10,7 +13,12 @@ const Banner = () => {
           <img src={banner}></img>
           <div className="flex flex-col md:flex-row items-center justify-around -mt-14 gap-4">
             <div className="flex bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-64">
-              <img src={bfood1} className="rounded-2xl"></img>
+              <img
+                src={noodles}
+                className="w-20 h-20 object-cover rounded-2xl"
+                alt="noodles"
+              />
+
               <div className="space-y-1">
                 <h5 className="font-medium mb-1">Spicy Noodles</h5>
                 <div className="rating rating-sm">
@@ -46,13 +54,18 @@ const Banner = () => {
                     readOnly
                   />
                 </div>
-                <p className="text-red">Rs.180</p>
+                <p className="text-red">$18</p>
               </div>
             </div>
             <div className="sm:flex hidden flex bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-64">
-              <img src={bfood1} className="rounded-2xl"></img>
+              <img
+                src={burger}
+                className="w-20 h-20 object-cover rounded-2xl"
+                alt="burger"
+              />
+
               <div className="space-y-1">
-                <h5 className="font-medium mb-1">Spicy Noodles</h5>
+                <h5 className="font-medium mb-1">Burger</h5>
                 <div className="rating rating-sm">
                   <input
                     type="radio"
@@ -86,7 +99,7 @@ const Banner = () => {
                     readOnly
                   />
                 </div>
-                <p className="text-red">Rs.180</p>
+                <p className="text-red">$25</p>
               </div>
             </div>
           </div>
@@ -94,17 +107,19 @@ const Banner = () => {
 
         {/* texts */}
         <div className="md:2-1/2 space-y-7 px-4">
-          <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading snug">
-            Dive into Delights of Delectable
-            <span className="text-green"> Food</span>
+          <h2 className="md:text-6xl text-4xl font-bold md:leading-snug leading snug">
+            Savor the Magic of Every
+            <span className="text-green"> Meal</span>
           </h2>
-          <p className="text-xl text-[#4A4A4A]">
-            Where Each Plate Weaves a Story of Culinary Mastery and Passionate
+          <p className="text-2xl text-[#4A4A4A]">
+            Where Every Dish is a Blend of Culinary Mastery and Passionate
             Craftsmanship
           </p>
-          <button className="bg-green px-8 py-3 font-semibold ext-white rounded-full">
-            Order Now
-          </button>
+          <Link to="/menu">
+            <button className="bg-green mt-10 px-8 py-3 font-semibold ext-white rounded-full">
+              Order Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

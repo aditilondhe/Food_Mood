@@ -28,7 +28,7 @@ const ManageItems = () => {
         if (res) {
           Swal.fire({
             title: "Deleted!",
-            text: "Your item has been deleted.",
+            text: "Item deleted successfully!",
             icon: "success",
           });
           refetch();
@@ -48,7 +48,7 @@ const ManageItems = () => {
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
-            <thead>
+            <thead className="text-gray-700">
               <tr>
                 <th>#</th>
                 <th>Image</th>

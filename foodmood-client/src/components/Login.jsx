@@ -86,25 +86,25 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="max-w-md bg-white shadow w-full mx-auto flex items-center justify-center my-20 ">
-      <div className="mb-5">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6 border-2">
         <form
           className="card-body"
           method="dialog"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h3 className="font-bold text-lg">Please Login!</h3>
+          <h3 className="font-bold text-lg text-center">Please Login!</h3>
 
           {/* email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text  text-gray-700">Email</span>
             </label>
             <input
               type="email"
               placeholder="email"
               className="input input-bordered"
-              style={{ backgroundColor: "white" }} // Set background color to white
+              style={{ backgroundColor: "white" }}
               {...register("email")}
             />
           </div>
@@ -112,13 +112,13 @@ const Login = () => {
           {/* password */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text  text-gray-700">Password</span>
             </label>
             <input
               type="password"
               placeholder="password"
               className="input input-bordered"
-              style={{ backgroundColor: "white" }} // Set background color to white
+              style={{ backgroundColor: "white" }}
               {...register("password", { required: true })}
             />
             <label className="label">
@@ -129,12 +129,10 @@ const Login = () => {
           </div>
 
           {/* show errors */}
-          {errorMessage ? (
-            <p className="text-red text-xs italic">
+          {errorMessage && (
+            <p className="text-red text-xs italic text-center mt-2">
               Provide a correct username & password.
             </p>
-          ) : (
-            ""
           )}
 
           {/* submit btn */}
@@ -154,13 +152,15 @@ const Login = () => {
           </Link>
 
           <p className="text-center my-2">
-            Donot have an account?
+            Don’t have an account?
             <Link to="/signup" className="underline text-red ml-1">
               Signup Now
             </Link>
           </p>
         </form>
-        <div className="text-center space-x-3">
+
+        {/* social icons */}
+        <div className="text-center space-x-3 mt-4">
           <button
             onClick={handleRegister}
             className="btn btn-circle bg-white hover:bg-green hover:text-white"

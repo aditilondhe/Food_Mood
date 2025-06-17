@@ -3,7 +3,7 @@ import React from "react";
 const categoryItems = [
   {
     id: 1,
-    title: "Main Dish",
+    title: "Main Course",
     des: "(86 Items)",
     image: "../../../public/img1.png",
   },

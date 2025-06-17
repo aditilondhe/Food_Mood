@@ -23,9 +23,8 @@ const AddMenu = () => {
       if (res.data.item) {
         reset();
         Swal.fire({
-          position: "top-end",
           icon: "success",
-          title: "Your Item is inserted successfully!",
+          title: "Item added successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -36,7 +35,7 @@ const AddMenu = () => {
   };
 
   return (
-    <div className="w-full md:[870px] px-4 mx-auto">
+    <div className="w-full md:[870px] px-4 mx-auto ">
       <h2 className="text-2xl font-semibold my-4">
         Upload A <span className="text-green"> Menu Item</span>
       </h2>
@@ -46,7 +45,7 @@ const AddMenu = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Recipe Name*</span>
+              <span className="label-text  text-gray-700">Recipe Name*</span>
             </label>
             <input
               type="text"
@@ -62,7 +61,7 @@ const AddMenu = () => {
             {/* categories */}
             <div className="form-control w-full my-6">
               <label className="label">
-                <span className="label-text">Category*</span>
+                <span className="label-text  text-gray-700">Category*</span>
               </label>
               <select
                 {...register("category", { required: true })}
@@ -75,7 +74,7 @@ const AddMenu = () => {
                 <option value="salad">Salad</option>
                 <option value="pizza">Pizza</option>
                 <option value="soup">Soup</option>
-                <option value="dessert">dessert</option>
+                <option value="dessert">Dessert</option>
                 <option value="drinks">Drinks</option>
                 <option value="popular">Popular</option>
               </select>
@@ -84,7 +83,7 @@ const AddMenu = () => {
             {/* prices */}
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Price*</span>
+                <span className="label-text  text-gray-700">Price*</span>
               </label>
               <input
                 type="number"
@@ -99,7 +98,7 @@ const AddMenu = () => {
           {/* 3rd row */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Recipe Details</span>
+              <span className="label-text  text-gray-700">Recipe Details</span>
             </label>
             <textarea
               {...register("recipe", { required: true })}
@@ -115,11 +114,11 @@ const AddMenu = () => {
               type="file"
               {...register("image", { required: true })}
               className="file-input w-full max-w-xs"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", border: "1px solid black" }}
             />
           </div>
 
-          <button className="btn bg-green text-white px-6">
+          <button className="btn rounded-half bg-green text-white px-6">
             Add Item <FaUtensils />
           </button>
         </form>
