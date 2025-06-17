@@ -23,7 +23,7 @@ place orders, and make online payments, while enabling admins to manage all data
 
 ## Tech Stack
 
-**Frontend:** React.js, Tailwind CSS, DaisyUI  
+**Frontend:** React.js, Tailwind CSS, DaisyUI, TanStack Query
 **Backend:** Node.js, Express.js, MongoDB  
 **Authentication:** Firebase Authentication, JWT  
 **Payments:** Stripe API  
