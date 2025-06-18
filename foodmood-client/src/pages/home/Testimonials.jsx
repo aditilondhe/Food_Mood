@@ -8,7 +8,7 @@ const Testimonials = () => {
         {/* Image section */}
         <div className="md:w-1/2 w-full">
           <img
-            src="../../public/images/testimonials/chef.png"
+            src="/images/testimonials/chef.png"
             alt="Testimonials"
             className="w-full max-h-[500px] object-contain mx-auto"
           />
@@ -31,7 +31,7 @@ const Testimonials = () => {
                 <div className="avatar">
                   <div className="w-12 rounded-full cursor-pointer">
                     <img
-                      src="../../public/images/testimonials/testimonial1.png"
+                      src="/images/testimonials/testimonial1.png"
                       alt="Customer 1"
                     />
                   </div>
@@ -39,7 +39,7 @@ const Testimonials = () => {
                 <div className="avatar">
                   <div className="w-12 rounded-full cursor-pointer">
                     <img
-                      src="../../public/images/testimonials/testimonial2.png"
+                      src="/images/testimonials/testimonial2.png"
                       alt="Customer 2"
                     />
                   </div>
@@ -47,7 +47,7 @@ const Testimonials = () => {
                 <div className="avatar">
                   <div className="w-12 rounded-full cursor-pointer">
                     <img
-                      src="../../public/images/testimonials/testimonial3.png"
+                      src="/images/testimonials/testimonial3.png"
                       alt="Customer 3"
                     />
                   </div>

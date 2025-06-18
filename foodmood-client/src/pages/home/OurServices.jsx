@@ -5,25 +5,25 @@ const serviceLists = [
     id: 1,
     title: "Catering",
     des: "Delight your guests with our flavors and  presentation",
-    img: "../../public/images/services/icon1.png",
+    img: "/images/services/icon1.png",
   },
   {
     id: 2,
     title: "Fast delivery",
     des: "We deliver your order promptly to your door",
-    img: "../../public/images/services/icon2.png",
+    img: "/images/services/icon2.png",
   },
   {
     id: 3,
     title: "Online Ordering",
     des: "Explore menu & order with ease using our Online Ordering",
-    img: "../../public/images/services/icon3.png",
+    img: "/images/services/icon3.png",
   },
   {
     id: 4,
     title: "Gift Cards",
     des: "Give the gift of exceptional dining with FoodMood Gift Cards",
-    img: "../../public/images/services/icon4.png",
+    img: "/images/services/icon4.png",
   },
 ];
 

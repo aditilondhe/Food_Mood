@@ -1,8 +1,6 @@
 import React from "react";
-import banner from "../../public/banner.png";
+
 import bfood1 from "../../public/b-food1.png";
-import noodles from "../../public/noodles.avif";
-import burger from "../../public/burger.jpg";
 import { Link } from "react-router-dom";
 const Banner = () => {
   return (
@@ -10,11 +8,11 @@ const Banner = () => {
       <div className="py-24 flex flex-col md:flex-row-reverse justify-between items-center gap-8">
         {/*imgs*/}
         <div className="md:w-1/2">
-          <img src={banner}></img>
+          <img src="/banner.png" alt="Banner" />
           <div className="flex flex-col md:flex-row items-center justify-around -mt-14 gap-4">
             <div className="flex bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-64">
               <img
-                src={noodles}
+                src="/noodles.avif"
                 className="w-20 h-20 object-cover rounded-2xl"
                 alt="noodles"
               />
@@ -59,7 +57,7 @@ const Banner = () => {
             </div>
             <div className="sm:flex hidden flex bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-64">
               <img
-                src={burger}
+                src="/burger.jpg"
                 className="w-20 h-20 object-cover rounded-2xl"
                 alt="burger"
               />

@@ -5,25 +5,25 @@ const categoryItems = [
     id: 1,
     title: "Main Course",
     des: "(86 Items)",
-    image: "../../../public/img1.png",
+    image: "/img1.png",
   },
   {
     id: 2,
     title: "Breakfast",
     des: "(12 Items)",
-    image: "../../../public/img2.png",
+    image: "/img2.png",
   },
   {
     id: 3,
     title: "Dessert",
     des: "(48 Items)",
-    image: "../../../public/img3.png",
+    image: "/img3.png",
   },
   {
     id: 4,
     title: "Browse All",
     des: "(255 Items)",
-    image: "../../../public/img4.png",
+    image: "/img4.png",
   },
 ];
 
