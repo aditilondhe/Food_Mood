@@ -11,6 +11,17 @@ const verifyAdmin = require('../middlewares/verifyAdmin');
 router.get('/', async (req, res) => {
   try {
     const result = await Payment.aggregate([
+      {
+    $addFields: {
+      menuItems: {
+        $map: {
+          input: "$menuItems",
+          as: "id",
+          in: { $toObjectId: "$$id" }
+        }
+      }
+    }
+  },
         {
           $unwind: '$menuItems'
         },

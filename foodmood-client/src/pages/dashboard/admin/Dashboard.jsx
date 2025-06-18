@@ -35,7 +35,7 @@ const Dashboard = () => {
       return res.data;
     },
   });
-
+  console.log(stats);
   const { data: chartData = [] } = useQuery({
     queryKey: ["order-stats"],
     queryFn: async () => {
@@ -43,7 +43,7 @@ const Dashboard = () => {
       return res.data;
     },
   });
-
+  console.log(chartData);
   // custom shape for the bar chart
   const getPath = (x, y, width, height) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${
