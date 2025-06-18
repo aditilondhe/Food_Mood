@@ -14,7 +14,7 @@ const CheckoutForm = ({ price, cart }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  console.log(user.email);
+  console.log(user?.email);
 
   useEffect(() => {
     if (typeof price !== "number" || price < 1) {
@@ -100,7 +100,7 @@ const CheckoutForm = ({ price, cart }) => {
       axiosSecure.post("/payments", paymentInfo).then((res) => {
         console.log(res.data);
         if (res.data) {
-          alert("Payment Successfull!");
+          alert("Payment Successful!");
           navigate("/order");
         }
       });

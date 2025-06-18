@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'menu_foodmood', // optional folder name in Cloudinary
+    folder: 'menu_foodmood', // folder name in Cloudinary
     allowed_formats: ['jpg', 'png', 'jpeg'],
   },
 });

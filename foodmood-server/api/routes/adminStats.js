@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// Import your middleware
 const User = require('../models/User');
 const Menu = require('../models/Menu');
 const Payment = require('../models/Payments'); 
 
-// middleware
+
 const verifyToken = require('../middlewares/verifyToken')
 const verifyAdmin = require('../middlewares/verifyAdmin')
 

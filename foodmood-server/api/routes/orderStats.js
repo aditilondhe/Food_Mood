@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-// Import your middleware
 const User = require('../models/User');
 const Menu = require('../models/Menu');
-const Payment = require('../models/Payments'); // Corrected import statement
+const Payment = require('../models/Payments'); 
 
 // middleware
 const verifyToken = require('../middlewares/verifyToken');
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
         },
         {
           $lookup: {
-            from: 'menus', // Assuming the menu collection name is 'menus'
+            from: 'menus', 
             localField: 'menuItems',
             foreignField: '_id',
             as: 'menuItemDetails'

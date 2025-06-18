@@ -67,7 +67,7 @@ router.patch('/:id', verifyToken, async (req, res) => {
         // console.log(updatedUser)
 
         if (!updatedStatus) {
-            return res.status(404).json({ message: 'Pay Id not found' });
+            return res.status(404).json({ message: 'Payment Id not found' });
         }
 
         res.status(200).json(updatedStatus);

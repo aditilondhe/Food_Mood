@@ -40,20 +40,14 @@ const ManageBookings = () => {
   const indexOfFirstItem = indexOfLastItem - items_Per_Page;
   const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
 
-  // delete item
-  const handleDeleteItem = (item) => {
-    console.log(item._id);
-  };
-
   // confirm order
-  const confiremedOrder = async (item) => {
+  const confirmedOrder = async (item) => {
     console.log(item);
     await axiosSecure.patch(`/payments/${item._id}`).then((res) => {
       console.log(res.data);
       Swal.fire({
-        position: "top-end",
         icon: "success",
-        title: `Order Confirmed Now!`,
+        title: `Order Confirmed!`,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -66,7 +60,7 @@ const ManageBookings = () => {
   return (
     <div className="w-full md:w-[870px] mx-auto px-4 ">
       <h2 className="text-2xl font-semibold my-4">
-        Manage All <span className="text-green">Bookings!</span>
+        Manage All <span className="text-green">Bookings</span>
       </h2>
 
       {/* menu items table  */}
@@ -82,15 +76,14 @@ const ManageBookings = () => {
                 <th>Price</th>
                 <th>Status</th>
                 <th>Confirm Order</th>
-                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {currentItems.map((item, index) => (
                 <tr key={index}>
-                  <td>{index + 1}</td>
+                  <td>{indexOfFirstItem + index + 1}</td>
                   <td>{item.email}</td>
-                  <td>{item.transitionId}</td>
+                  <td>{item.transactionId}</td>
                   <td>${item.price}</td>
                   <td>{item.status}</td>
                   <td className="text-center">
@@ -99,19 +92,11 @@ const ManageBookings = () => {
                     ) : (
                       <button
                         className="btn bg-green text-white btn-xs text-center"
-                        onClick={() => confiremedOrder(item)}
+                        onClick={() => confirmedOrder(item)}
                       >
                         <GiConfirmed />
                       </button>
                     )}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDeleteItem(item)}
-                      className="btn btn-ghost btn-xs"
-                    >
-                      <FaTrashAlt className="text-red"></FaTrashAlt>
-                    </button>
                   </td>
                 </tr>
               ))}

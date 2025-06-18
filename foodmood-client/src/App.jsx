@@ -1,16 +1,3 @@
-//import './App.css'
-
-//function App() {
-
-//return (
-//<>
-//<h1 className='bg-green'>Hello,Developers!</h1>
-//</>
-//)
-//}
-
-//export default App
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";

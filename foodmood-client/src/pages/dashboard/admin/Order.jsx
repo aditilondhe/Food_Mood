@@ -76,7 +76,6 @@ const Order = () => {
                       </tr>
                     ))}
                   </tbody>
-                  {/* foot */}
                 </table>
               </div>
             </div>

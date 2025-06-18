@@ -98,7 +98,7 @@ const AddMenu = () => {
           {/* 3rd row */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text  text-gray-700">Recipe Details</span>
+              <span className="label-text  text-gray-700">Recipe Details*</span>
             </label>
             <textarea
               {...register("recipe", { required: true })}

@@ -1,6 +1,5 @@
-import React, { useContext } from "react"; // removed useState
-// Removed FaHeart
-import { useLocation, useNavigate } from "react-router-dom"; // removed Link
+import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";

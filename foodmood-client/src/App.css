@@ -11,11 +11,7 @@ header{
   z-index: 10001 !important;
 }
 
-/*.section-container{
-    @apply max-w-sreen-2xl container mx-auto xl:px-24 px-4;
-   
-}
-*/
+
 .subtitle{
   @apply text-red uppercase tracking-wide font-medium text-lg;
 }
@@ -31,13 +27,7 @@ header{
 }
 
 
- /*  #root{
- background-color:white;
- color-scheme: light;
 
-}
-
-*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

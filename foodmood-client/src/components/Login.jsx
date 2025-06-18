@@ -3,15 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../contexts/AuthProvider";
-
-// import useAxiosPublic from "../hooks/useAxiosPublic";
-// import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   const [errorMessage, seterrorMessage] = useState("");
-  //const { signUpWithGmail, login } = useAuth();
   const axiosPublic = useAxiosPublic();
   const { signUpWithGmail, login } = useContext(AuthContext);
 

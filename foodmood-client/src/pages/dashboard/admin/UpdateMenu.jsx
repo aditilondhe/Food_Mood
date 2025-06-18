@@ -29,7 +29,7 @@ const UpdateMenu = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your Item is updated successfully!",
+          title: "Item updated successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -106,7 +106,7 @@ const UpdateMenu = () => {
           {/* 3rd row */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Recipe Details</span>
+              <span className="label-text">Recipe Details*</span>
             </label>
             <textarea
               defaultValue={item.recipe}

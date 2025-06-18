@@ -20,7 +20,7 @@ const Banner = () => {
               />
 
               <div className="space-y-1">
-                <h5 className="font-medium mb-1">Spicy Noodles</h5>
+                <h5 className="font-medium mb-1">Noodles</h5>
                 <div className="rating rating-sm">
                   <input
                     type="radio"
@@ -99,7 +99,7 @@ const Banner = () => {
                     readOnly
                   />
                 </div>
-                <p className="text-red">$25</p>
+                <p className="text-red">$20</p>
               </div>
             </div>
           </div>

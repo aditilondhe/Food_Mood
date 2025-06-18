@@ -90,10 +90,7 @@ const ManageItems = () => {
                   </td>
                 </tr>
               ))}
-              {/* row 1 */}
             </tbody>
-
-            {/* foot */}
           </table>
         </div>
       </div>

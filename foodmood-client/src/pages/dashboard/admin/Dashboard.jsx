@@ -36,7 +36,6 @@ const Dashboard = () => {
     },
   });
 
-  console.log(stats);
   const { data: chartData = [] } = useQuery({
     queryKey: ["order-stats"],
     queryFn: async () => {

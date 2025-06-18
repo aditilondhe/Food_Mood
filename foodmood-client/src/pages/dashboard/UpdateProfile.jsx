@@ -60,9 +60,6 @@ const UpdateProfile = () => {
               style={{ backgroundColor: "white" }}
               required
             />
-
-            {/* TODO  uploading image */}
-            {/* <input type="file" className="file-input w-full max-w-xs" /> */}
           </div>
           <div className="form-control mt-6">
             <button className="btn bg-green text-white">Update</button>

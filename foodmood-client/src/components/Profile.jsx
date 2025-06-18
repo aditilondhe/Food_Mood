@@ -62,11 +62,7 @@ const Profile = ({ user }) => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            {/* {!isAdminLoading && isAdmin && (
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-            )} */}
+
             <li>
               <a
                 onClick={() => {
