@@ -89,7 +89,7 @@ const CheckoutForm = ({ price, cart }) => {
         transactionId: transactionId,
         price,
         quantity: cart.length,
-        status: "Order Pending",
+        status: "pending",
         itemsName: cart.map((item) => item.name),
         cartItems: cart.map((item) => item._id),
         menuItems: cart.map((item) => item.menuItemId),

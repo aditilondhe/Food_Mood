@@ -35,6 +35,10 @@ const Footer = () => {
           <a className="link link-hover">Social media</a>
         </nav>
       </footer>
+      {/* Copyright */}
+      <div className="text-center text-gray-700 py-4 text-sm border-t border-gray-300">
+        © {new Date().getFullYear()} FoodMood. All rights reserved.
+      </div>
     </div>
   );
 };

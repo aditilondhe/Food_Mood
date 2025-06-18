@@ -16,6 +16,7 @@ import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
   const { loading } = useAuth();
+
   const [isAdmin, isAdminLoading] = useAdmin();
 
   // Handles drawer close on mobile
