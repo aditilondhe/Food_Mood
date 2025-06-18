@@ -24,7 +24,7 @@ const Cards = ({ item }) => {
         email: user.email,
       };
 
-      fetch("http://localhost:6001/carts", {
+      fetch("https://foodmood-low6.onrender.com/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

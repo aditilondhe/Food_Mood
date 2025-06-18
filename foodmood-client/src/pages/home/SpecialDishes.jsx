@@ -9,7 +9,7 @@ const SpecialDishes = () => {
   const slider = React.useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:6001/menu")
+    fetch("https://foodmood-low6.onrender.com/menu")
       .then((res) => res.json())
       .then((data) => {
         const specials = data.filter((item) => item.category === "popular");

@@ -11,7 +11,7 @@ const Order = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:6001/payments?email=${user?.email}`,
+        `https://foodmood-low6.onrender.com/payments?email=${user?.email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

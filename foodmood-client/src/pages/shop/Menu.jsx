@@ -16,7 +16,7 @@ const Menu = () => {
     //fetch data from the backend
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:6001/menu");
+        const response = await fetch("https://foodmood-low6.onrender.com/menu");
         const data = await response.json();
         // console.log(data);
 

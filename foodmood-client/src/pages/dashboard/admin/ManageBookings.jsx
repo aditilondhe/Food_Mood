@@ -22,11 +22,14 @@ const ManageBookings = () => {
     queryKey: ["orders", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await fetch(`http://localhost:6001/payments/all`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `https://foodmood-low6.onrender.com/payments/all`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return res.json();
     },
   });
