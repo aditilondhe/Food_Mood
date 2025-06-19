@@ -8,7 +8,7 @@ const Payment = require('../models/Payments');
 const verifyToken = require('../middlewares/verifyToken');
 const verifyAdmin = require('../middlewares/verifyAdmin');
 
-router.get('/', async (req, res) => {
+router.get('/',verifyToken, verifyAdmin, async (req, res) => {
   try {
     const result = await Payment.aggregate([
       {
